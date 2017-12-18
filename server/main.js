@@ -11,13 +11,18 @@ Meteor.startup( () => {
         // add data...
         _.times( 5000, () => {
             const { name, email, phone } = helpers.createCard();
-            Employees.insert({
+            Employees.insert( {
                 name,
                 email,
                 phone,
                 avatar: image.avatar()
-            });
+            } );
         } );
     }
+
+    Meteor.publish( 'employees', function () {
+        // returns a cursor not the actual data
+        return Employees.find( {}, { limit: 20 } );
+    } );
 
 } );
