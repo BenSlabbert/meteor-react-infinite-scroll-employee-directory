@@ -20,9 +20,9 @@ Meteor.startup( () => {
         } );
     }
 
-    Meteor.publish( 'employees', function () {
+    Meteor.publish( 'employees', function ( per_page ) {
         // returns a cursor not the actual data
-        return Employees.find( {}, { limit: 20 } );
+        return Employees.find( {}, { limit: per_page } );
     } );
 
 } );
